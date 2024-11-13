@@ -1,9 +1,9 @@
 public class Fish {
     private final String name;
-    private final int weight;
-    private final int length;
+    private final double weight;
+    private final double length;
 
-    public Fish (String name , int weight, int length){
+    public Fish (String name , double weight, double length){
         this.name = name;
         this.weight = weight;
         this.length = length;
@@ -11,10 +11,10 @@ public class Fish {
     public String getName(){
       return name;
     }
-    public int getWeight(){
+    public double getWeight(){
         return weight;
     }
-    public int getLength(){
+    public double getLength(){
         return length;
     }
 }
