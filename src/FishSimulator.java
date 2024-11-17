@@ -43,18 +43,24 @@ public class FishSimulator {
         }
     }
 
-        public String catchFish() {
-            while (numFishingAttempts != 21) {
-
+    public String catchFish(String userInput) {
+            if (fishFound = false){
+                return "No fish found. Try again."
+            }
+            if (userInput.toLowerCase == "e"){
+       
                 Fish caughtFish = fishList.get(new Random().nextInt(fishList.size()));
                 numFishCaught = numFishCaught + 1;
                 numFishingAttempts = numFishingAttempts + 1;
                 score = score + caughtFish.getPoints();
-                return "you have caught a " + caughtFish.getName() + " with " + caughtFish.getWeight() + " lbs " + caughtFish.getLength() + " in";
-                }
-                return "you have fished the max amount of times";
+                return "You have caught a " + caughtFish.getName() + " with " + caughtFish.getWeight() + " lbs, " + caughtFish.getLength() + " inches. You earned " + caughtFish.getPoints + " points + "Total points: " + score + "Total fish caught " + numFishCaught;
+                }else{
+                return "You have missed the fish. Try again next time.";
             }
         }
+    public boolean gameOver(){
+        return score >= 50 || numFishingAttempts >= 10;
+    }
 
 
 
