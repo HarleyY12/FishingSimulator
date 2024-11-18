@@ -12,10 +12,31 @@ public class FishSimulatorRunner {
         FishSimulator simulator = new FishSimulator(Arrays.asList(fish1,fish2,fish3),5000);
 
         System.out.println("Welcome to fishing simulator.");
-        System.out.println("You will have a time limit to press 'e' to 'fish'.");
+        System.out.println("You will have a time limit.");
         System.out.println("You need 100 points to win.");
-        System.out.println();
+        System.out.println(simulator.startFishing());
+
+
+        while (!simulator.gameOver()){
+            String castResults = simulator.castLine();
+            System.out.println(castResults);
+            if (!castResults.contains("No fish")){
+                System.out.println("Press e to fish");
+                String userInput = s.next();
+                String catchResults = simulator.catchFish(userInput);
+                System.out.println(catchResults);
+            }else{
+                System.out.println();
+
+            }
+        }
         
+
+        if (simulator.getScore() >= 50 && simulator.getNumFishCaught() < 20){
+            System.out.println("You win!");
+        }else if ( simulator.getScore()<50 || simulator.getNumFishCaught() > 20){
+            System.out.println("You lost. Try again next time.");
+        }
 
 
     }
