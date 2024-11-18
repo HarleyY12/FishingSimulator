@@ -8,6 +8,7 @@ public class FishSimulator {
     private int numFishingAttempts = 0;
     private long timeLimit;
     private long startTime;
+    private long passedTime;
     boolean fishFound = false;
 
     public FishSimulator(List<Fish> fishList, long timeInMilliseconds) {
@@ -24,19 +25,19 @@ public class FishSimulator {
     }
 
     public String startFishing() {
-        startTime = System.currentTimeMillis;
+        startTime = System.currentTimeMillis();
         return "You have " + (timeLimit / 1000) + " seconds to get ready to fish !";
     }
 
     public String castLine() {
-        long passedTime = System.currentTimeMillis - startTime;
+        passedTime = System.currentTimeMillis() - startTime;
         if (passedTime > startTime) {
             return "Get ready!";
         }
         if (Math.random() > 0.5 && numFishingAttempts < 21) {
-            Fish caughtFish = fishList.get(new Random().nextInt(fishList.size()));
+
             fishFound = true;
-            return "A " + caughtFish.getName() + " has been found! Press e to fish it.";
+            return "A fish has been found! Press e to fish it.";
         } else {
             fishFound = false;
             return "no fish have been found";
@@ -44,23 +45,25 @@ public class FishSimulator {
     }
 
     public String catchFish(String userInput) {
-            if (fishFound = false){
-                return "No fish found. Try again."
-            }
-            if (userInput.toLowerCase == "e"){
-       
-                Fish caughtFish = fishList.get(new Random().nextInt(fishList.size()));
-                numFishCaught = numFishCaught + 1;
-                numFishingAttempts = numFishingAttempts + 1;
-                score = score + caughtFish.getPoints();
-                return "You have caught a " + caughtFish.getName() + " with " + caughtFish.getWeight() + " lbs, " + caughtFish.getLength() + " inches. You earned " + caughtFish.getPoints + " points + "Total points: " + score + "Total fish caught " + numFishCaught;
-                }else{
-                return "You have missed the fish. Try again next time.";
-            }
+
+        if (!fishFound) {
+            return "No fish found. Recasting line...";
         }
-    public boolean gameOver(){
-        return score >= 50 || numFishingAttempts >= 10;
+        if (userInput.equals("e") && passedTime < startTime) {
+
+            Fish caughtFish = fishList.get(new Random().nextInt(fishList.size()));
+            numFishCaught = numFishCaught + 1;
+            numFishingAttempts = numFishingAttempts + 1;
+            score = score + caughtFish.getPoints();
+            return "You have caught a " + caughtFish.getName() + " with " + caughtFish.getWeight() + " lbs, " + caughtFish.getLength() + " inches. You earned " + caughtFish.getPoints() + " points. " + "Total points: " + getScore() + " Total fish caught: " + getNumFishCaught() ;
+
+        } else{
+            return "You have missed the fish. Try again next time.";
+        }
     }
 
-
+    public boolean gameOver() {
+        return score >= 50 || numFishingAttempts >= 10;
+    }
+}
 
