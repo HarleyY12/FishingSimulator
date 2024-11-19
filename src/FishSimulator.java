@@ -11,6 +11,8 @@ public class FishSimulator {
     private long startTime;
     private long passedTime;
     private boolean fishFound = false;
+    private char fishingCommand;
+    private final char[] commands = {'e','a','m','p','z','t'};
 
     public FishSimulator(List<Fish> fishList, long timeInMilliseconds) {
         this.fishList = fishList;
@@ -34,7 +36,8 @@ public class FishSimulator {
             fishFound = true;
             startTime = System.currentTimeMillis();
             numFishingAttempts = numFishingAttempts + 1;
-            return "A fish has been found! Press e to fish it.";
+            fishingCommand = commands[new Random().nextInt(commands.length)];
+            return "A fish has been found! Press " + fishingCommand + " to fish it.";
         } else {
             fishFound = false;
             numFishingAttempts = numFishingAttempts + 1;
@@ -49,7 +52,7 @@ public class FishSimulator {
         if (!fishFound) {
             return "No fish found.";
         }
-        if (userInput.equals("e") && passedTime <= timeLimit) {
+        if (userInput.equals(String.valueOf(fishingCommand)) && passedTime <= timeLimit) {
             Fish caughtFish = fishList.get(new Random().nextInt(fishList.size()));
             numFishCaught = numFishCaught + 1;
             score = score + caughtFish.getPoints();
