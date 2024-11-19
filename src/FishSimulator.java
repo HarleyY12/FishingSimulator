@@ -1,4 +1,5 @@
 
+
 import java.util.List;
 import java.util.Random;
 public class FishSimulator {
@@ -15,30 +16,29 @@ public class FishSimulator {
         this.fishList = fishList;
         timeLimit = timeInMilliseconds;
     }
-
     public int getScore() {
         return score;
     }
-
     public int getNumFishCaught() {
         return numFishCaught;
     }
-
+    public int getNumFishingAttempts(){
+        return numFishingAttempts;
+    }
     public String startFishing() {
-        startTime = System.currentTimeMillis();
         return "You have " + (timeLimit / 1000) + " seconds to get ready to fish !";
     }
-
     public String castLine() {
         passedTime = System.currentTimeMillis() - startTime;
-       
-        if (Math.random() > 0.5 && numFishingAttempts < 21) {
+        if (Math.random() > 0.3 && numFishingAttempts < 21) {
             fishFound = true;
             startTime = System.currentTimeMillis();
+            numFishingAttempts = numFishingAttempts + 1;
             return "A fish has been found! Press e to fish it.";
         } else {
             fishFound = false;
-            return "No fish has been found.Recasting line...";
+            numFishingAttempts = numFishingAttempts + 1;
+            return "No fish has been found.";
         }
     }
     public String catchFish(String userInput) {
@@ -46,26 +46,22 @@ public class FishSimulator {
         if (passedTime > timeLimit){
             return "You missed the fish.Time is up.";
         }
-
         if (!fishFound) {
-            return "No fish found. Recasting line...";
+            return "No fish found.";
         }
-        
         if (userInput.equals("e") && passedTime <= timeLimit) {
-
             Fish caughtFish = fishList.get(new Random().nextInt(fishList.size()));
             numFishCaught = numFishCaught + 1;
-            numFishingAttempts = numFishingAttempts + 1;
             score = score + caughtFish.getPoints();
-            return "You have caught a " + caughtFish.getName() + " with " + caughtFish.getWeight() + " lbs, " + caughtFish.getLength() + " inches. You earned " + caughtFish.getPoints() + " points. " + "Total points: " + getScore() + " Total fish caught: " + getNumFishCaught() ;
-
+            return "You have caught a " + caughtFish.getName() + " with " + caughtFish.getWeight() + " lbs, "
+                    + caughtFish.getLength() + " inches. You earned " + caughtFish.getPoints() + " points. "
+                    + "Total points: " + getScore() + " Total fish caught: " + getNumFishCaught() ;
         } else{
-            return "You have missed the fish. Try again next time.";
+            score = score - 2;
+            return "You have missed the fish. Try again next time.Your score is now " + getScore();
         }
     }
-
     public boolean gameOver() {
         return score >= 50 || numFishingAttempts >= 20;
     }
 }
-
