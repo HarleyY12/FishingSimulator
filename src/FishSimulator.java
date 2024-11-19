@@ -27,6 +27,9 @@ public class FishSimulator {
     public int getNumFishingAttempts(){
         return numFishingAttempts;
     }
+    public String getFishingCommand(){
+        return fishingCommand;
+    }
     public String startFishing() {
         return "You have " + (timeLimit / 1000) + " seconds to get ready to fish !";
     }
