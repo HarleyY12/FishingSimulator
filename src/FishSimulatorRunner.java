@@ -20,7 +20,7 @@ public class FishSimulatorRunner {
             String castResults = simulator.castLine();
             System.out.println(castResults);
             if (!castResults.contains("No fish")){
-                System.out.println("Press e to fish");
+                System.out.println("Press " + simulator.getFishingCommand() + " to fish");
                 String userInput = s.next();
                 String catchResults = simulator.catchFish(userInput);
                 System.out.println(catchResults);
