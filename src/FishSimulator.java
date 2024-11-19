@@ -9,7 +9,7 @@ public class FishSimulator {
     private long timeLimit;
     private long startTime;
     private long passedTime;
-    boolean fishFound = false;
+    private boolean fishFound = false;
 
     public FishSimulator(List<Fish> fishList, long timeInMilliseconds) {
         this.fishList = fishList;
@@ -31,25 +31,27 @@ public class FishSimulator {
 
     public String castLine() {
         passedTime = System.currentTimeMillis() - startTime;
-        if (passedTime > startTime) {
-            return "Get ready!";
-        }
+       
         if (Math.random() > 0.5 && numFishingAttempts < 21) {
-
             fishFound = true;
+            startTime = System.currentTimeMillis();
             return "A fish has been found! Press e to fish it.";
         } else {
             fishFound = false;
-            return "no fish have been found";
+            return "No fish has been found.Recasting line...";
         }
     }
-
     public String catchFish(String userInput) {
+        passedTime = System.currentTimeMillis() - startTime;
+        if (passedTime > timeLimit){
+            return "You missed the fish.Time is up.";
+        }
 
         if (!fishFound) {
             return "No fish found. Recasting line...";
         }
-        if (userInput.equals("e") && passedTime < startTime) {
+        
+        if (userInput.equals("e") && passedTime <= timeLimit) {
 
             Fish caughtFish = fishList.get(new Random().nextInt(fishList.size()));
             numFishCaught = numFishCaught + 1;
@@ -63,7 +65,7 @@ public class FishSimulator {
     }
 
     public boolean gameOver() {
-        return score >= 50 || numFishingAttempts >= 10;
+        return score >= 50 || numFishingAttempts >= 20;
     }
 }
 
