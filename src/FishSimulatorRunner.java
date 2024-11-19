@@ -16,7 +16,6 @@ public class FishSimulatorRunner {
         System.out.println("You need 50 points to win.You will have a maximum of 20 fishing attempts.");
         System.out.println(simulator.startFishing());
 
-
         while (!simulator.gameOver()){
             String castResults = simulator.castLine();
             System.out.println(castResults);
@@ -26,21 +25,14 @@ public class FishSimulatorRunner {
                 String catchResults = simulator.catchFish(userInput);
                 System.out.println(catchResults);
             }else{
-                System.out.println();
-
+                System.out.println("Recasting line...");
             }
         }
-        
 
-        if (simulator.getScore() >= 50 && simulator.getNumFishCaught() < 20){
+        if (simulator.getScore() >= 50 && simulator.getNumFishingAttempts() < 20){
             System.out.println("You win!");
-        }else if ( simulator.getScore()<50 || simulator.getNumFishCaught() > 20){
+        }else if (simulator.getScore()<50  || simulator.getNumFishingAttempts() > 20){
             System.out.println("You lost. Try again next time.");
         }
-
-
     }
-
-
-
 }
