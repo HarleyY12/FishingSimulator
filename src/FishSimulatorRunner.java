@@ -12,8 +12,8 @@ public class FishSimulatorRunner {
         FishSimulator simulator = new FishSimulator(Arrays.asList(fish1,fish2,fish3),5000);
 
         System.out.println("Welcome to fishing simulator.");
-        System.out.println("You will have a time limit.");
-        System.out.println("You need 100 points to win.");
+        System.out.println("You will have a time limit for each fishing attempt.");
+        System.out.println("You need 50 points to win.You will have a maximum of 20 fishing attempts.");
         System.out.println(simulator.startFishing());
 
 
