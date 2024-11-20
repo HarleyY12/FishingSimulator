@@ -27,7 +27,7 @@ public class FishSimulator {
     public int getNumFishingAttempts(){
         return numFishingAttempts;
     }
-    public String getFishingCommand(){
+    public char getFishingCommand(){
         return fishingCommand;
     }
     public String startFishing() {
