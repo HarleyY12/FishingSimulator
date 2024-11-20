@@ -31,7 +31,7 @@ public class FishSimulator {
         return fishingCommand;
     }
     public String startFishing() {
-        return "You have " + (timeLimit / 1000) + " seconds to get ready to fish !";
+        return "You have " + (timeLimit / 1000) + " seconds to fish each fish ! !";
     }
     public String castLine() {
         passedTime = System.currentTimeMillis() - startTime;
