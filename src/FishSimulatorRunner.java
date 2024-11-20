@@ -9,7 +9,7 @@ public class FishSimulatorRunner {
         Fish fish1 = new Fish("goldfish",0.1,0.5,1);
         Fish fish2 = new Fish("bass",30,60,3);
         Fish fish3 = new Fish("salmon",50,80,5);
-        FishSimulator simulator = new FishSimulator(Arrays.asList(fish1,fish2,fish3),100000);
+        FishSimulator simulator = new FishSimulator(Arrays.asList(fish1,fish2,fish3),3000);
 
         System.out.println("Welcome to fishing simulator.");
         System.out.println("You will have a time limit for each fishing attempt.");
