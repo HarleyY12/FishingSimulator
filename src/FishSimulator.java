@@ -12,7 +12,7 @@ public class FishSimulator {
     private long passedTime;
     private boolean fishFound = false;
     private char fishingCommand;
-    private final char[] commands = {'e','a','m','p','z','t'};
+    private final char[] commands = {'a','b','p','j','f','t','h','e','c','m','z','r','w','o'};
 
     public FishSimulator(List<Fish> fishList, long timeInMilliseconds) {
         this.fishList = fishList;
@@ -35,7 +35,7 @@ public class FishSimulator {
     }
     public String castLine() {
         passedTime = System.currentTimeMillis() - startTime;
-        if (Math.random() > 0.3 && numFishingAttempts < 21) {
+        if (Math.random() > 0.3 && numFishingAttempts < 16) {
             fishFound = true;
             startTime = System.currentTimeMillis();
             numFishingAttempts = numFishingAttempts + 1;
@@ -61,13 +61,14 @@ public class FishSimulator {
             score = score + caughtFish.getPoints();
             return "You have caught a " + caughtFish.getName() + " with " + caughtFish.getWeight() + " lbs, "
                     + caughtFish.getLength() + " inches. You earned " + caughtFish.getPoints() + " points. "
-                    + "Total points: " + getScore() + " Total fish caught: " + getNumFishCaught() ;
+                    + "Total points: " + getScore() + " Total fish caught: " + getNumFishCaught()
+                    + " Number of fishing attempts: " + getNumFishingAttempts();
         } else{
             score = score - 2;
             return "You have missed the fish. Try again next time.Your score is now " + getScore();
         }
     }
     public boolean gameOver() {
-        return score >= 50 || numFishingAttempts >= 20;
+        return score >= 40 || numFishingAttempts >= 15;
     }
 }
