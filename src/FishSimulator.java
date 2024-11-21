@@ -11,8 +11,8 @@ public class FishSimulator {
     private long startTime;
     private long passedTime;
     private boolean fishFound = false;
-    private char fishingCommand;
-    private final char[] commands = {'a','b','p','j','f','t','h','e','c','m','z','r','w','o'};
+    private String fishingCommand;
+    private final String[] commands = {"apple","orange","coding","fish","fun","school","yes","no"};
 
     public FishSimulator(List<Fish> fishList, long timeInMilliseconds) {
         this.fishList = fishList;
@@ -27,7 +27,7 @@ public class FishSimulator {
     public int getNumFishingAttempts(){
         return numFishingAttempts;
     }
-    public char getFishingCommand(){
+    public String getFishingCommand(){
         return fishingCommand;
     }
     public String startFishing() {
@@ -35,7 +35,7 @@ public class FishSimulator {
     }
     public String castLine() {
         passedTime = System.currentTimeMillis() - startTime;
-        if (Math.random() > 0.3 && numFishingAttempts < 16) {
+        if (Math.random() > 0.25 && numFishingAttempts < 21) {
             fishFound = true;
             startTime = System.currentTimeMillis();
             numFishingAttempts = numFishingAttempts + 1;
@@ -69,6 +69,6 @@ public class FishSimulator {
         }
     }
     public boolean gameOver() {
-        return score >= 40 || numFishingAttempts >= 15;
+        return score >= 40 || numFishingAttempts >= 20;
     }
 }
