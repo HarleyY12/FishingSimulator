@@ -19,6 +19,7 @@ public class FishSimulatorRunner {
         System.out.println("You will have a time limit for each fishing attempt.");
         System.out.println("You need 50 points to win.You will have a maximum of 20 fishing attempts.");
         System.out.println("Type 'start' to begin");
+        //Wait for user to type 'start'
         String reply = "";
         while (!(reply.equalsIgnoreCase("start"))){
             System.out.println("Waiting to start.");
