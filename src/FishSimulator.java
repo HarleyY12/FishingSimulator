@@ -2,22 +2,28 @@
 
 import java.util.List;
 import java.util.Random;
-public class FishSimulator {
-    private List<Fish> fishList;
-    private int numFishCaught = 0;
-    private int score = 0;
-    private int numFishingAttempts = 0;
-    private long timeLimit;
-    private long startTime;
-    private long passedTime;
-    private boolean fishFound = false;
-    private String fishingCommand;
-    private final String[] commands = {"apple","orange","coding","fish","fun","school","yes","no"};
 
+//FishSimulator class handles most of the logic for the game
+public class FishSimulator {
+    private List<Fish> fishList;  //List of available fish
+    private int numFishCaught = 0;  //Number of fish caught
+    private int score = 0;  //Player's score
+    private int numFishingAttempts = 0; //Number of fishing attempts
+    private long timeLimit;  //Time limit for catching fish in milliseconds
+    private long startTime;  //Time when current fishing attempt starts
+    private long passedTime;  //Time passed during current attempt
+    private boolean fishFound = false;  //Displays whether a fish has been found
+    private String fishingCommand;  //Random string a user has to enter to catch fish
+    private final String[] commands = {"apple","orange","coding","fish",
+            "fun","school","yes","no"};  //List of possible strings a user enters to catch fish
+
+    //Constructor to initialize the simulator with a list of fish and a time limit
     public FishSimulator(List<Fish> fishList, long timeInMilliseconds) {
         this.fishList = fishList;
         timeLimit = timeInMilliseconds;
     }
+
+    //Getter methods for score,number of fish caught,number of fishing attempts,and current fishing command
     public int getScore() {
         return score;
     }
@@ -30,9 +36,14 @@ public class FishSimulator {
     public String getFishingCommand(){
         return fishingCommand;
     }
+
+
+    // Starts the fishing session and informs the player of the time limit to catch fish
     public String startFishing() {
         return "You have " + (timeLimit / 1000) + " seconds to fish each fish ! !";
     }
+
+    // Simulates casting the fishing line to find a fish.A random fish is generated if a fish is found
     public String castLine() {
         passedTime = System.currentTimeMillis() - startTime;
         if (Math.random() > 0.25 && numFishingAttempts < 21) {
@@ -47,6 +58,8 @@ public class FishSimulator {
             return "No fish has been found.";
         }
     }
+
+    // Handles the logic for catching a fish based on user input
     public String catchFish(String userInput) {
         passedTime = System.currentTimeMillis() - startTime;
         if (passedTime > timeLimit){
@@ -68,6 +81,8 @@ public class FishSimulator {
             return "You have missed the fish. Try again next time.Your score is now " + getScore();
         }
     }
+
+    // Determines if the game is over (either score threshold or max attempts reached)
     public boolean gameOver() {
         return score >= 40 || numFishingAttempts >= 20;
     }
