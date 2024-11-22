@@ -45,7 +45,6 @@ public class FishSimulator {
 
     // Simulates casting the fishing line to find a fish.A random fish is generated if a fish is found
     public String castLine() {
-        passedTime = System.currentTimeMillis() - startTime;
         if (Math.random() > 0.25 && numFishingAttempts < 21) {
             fishFound = true;
             startTime = System.currentTimeMillis();
