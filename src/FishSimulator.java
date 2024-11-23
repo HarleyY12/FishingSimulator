@@ -13,8 +13,8 @@ public class FishSimulator {
     private long startTime;  //Time when current fishing attempt starts
     private long passedTime;  //Time passed during current attempt
     private boolean fishFound = false;  //Displays whether a fish has been found
-    private String fishingCommand;  //Random string a user has to enter to catch fish
-    private final String[] commands = {"apple","orange","coding","fish",
+    private String fishingCues;  //Random string a user has to enter to catch fish
+    private final String[] cues = {"apple","orange","coding","fish",
             "fun","school","yes","no"};  //List of possible strings a user enters to catch fish
 
     //Constructor to initialize the simulator with a list of fish and a time limit
@@ -23,7 +23,7 @@ public class FishSimulator {
         timeLimit = timeInMilliseconds;
     }
 
-    //Getter methods for score,number of fish caught,number of fishing attempts,and current fishing command
+    //Getter methods for score,number of fish caught,number of fishing attempts,and current fishing cue
     public int getScore() {
         return score;
     }
@@ -33,8 +33,8 @@ public class FishSimulator {
     public int getNumFishingAttempts(){
         return numFishingAttempts;
     }
-    public String getFishingCommand(){
-        return fishingCommand;
+    public String getFishingCues(){
+        return fishingCues;
     }
 
 
@@ -49,8 +49,8 @@ public class FishSimulator {
             fishFound = true;
             startTime = System.currentTimeMillis();
             numFishingAttempts = numFishingAttempts + 1;
-            fishingCommand = commands[new Random().nextInt(commands.length)];
-            return "A fish has been found! Press " + fishingCommand + " to fish it.";
+            fishingCues = cues[new Random().nextInt(cues.length)];
+            return "A fish has been found! Press " + fishingCues + " to fish it.";
         } else {
             fishFound = false;
             numFishingAttempts = numFishingAttempts + 1;
@@ -67,7 +67,7 @@ public class FishSimulator {
         if (!fishFound) {
             return "No fish found.";
         }
-        if (userInput.equals(String.valueOf(fishingCommand)) && passedTime <= timeLimit) {
+        if (userInput.equals(String.valueOf(fishingCues)) && passedTime <= timeLimit) {
             Fish caughtFish = fishList.get(new Random().nextInt(fishList.size()));
             numFishCaught = numFishCaught + 1;
             score = score + caughtFish.getPoints();
