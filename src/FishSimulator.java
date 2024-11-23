@@ -40,7 +40,7 @@ public class FishSimulator {
 
     // Starts the fishing session and informs the player of the time limit to catch fish
     public String startFishing() {
-        return "You have " + (timeLimit / 1000) + " seconds to fish each fish ! !";
+        return "You have " + (timeLimit / 1000) + " seconds to fish each fish!";
     }
 
     // Simulates casting the fishing line to find a fish.A random fish is generated if a fish is found
@@ -50,7 +50,7 @@ public class FishSimulator {
             startTime = System.currentTimeMillis();
             numFishingAttempts = numFishingAttempts + 1;
             fishingCues = cues[new Random().nextInt(cues.length)];
-            return "A fish has been found! Press " + fishingCues + " to fish it.";
+            return "A fish has been found! Enter '" + fishingCues + "' to fish it.";
         } else {
             fishFound = false;
             numFishingAttempts = numFishingAttempts + 1;
@@ -71,7 +71,7 @@ public class FishSimulator {
             Fish caughtFish = fishList.get(new Random().nextInt(fishList.size()));
             numFishCaught = numFishCaught + 1;
             score = score + caughtFish.getPoints();
-            return "You have caught a " + caughtFish.getName() + " with " + caughtFish.getWeight() + " lbs, "
+            return "You caught a " + caughtFish.getName() + " weighing " + caughtFish.getWeight() + " lbs, measuring "
                     + caughtFish.getLength() + " inches. You earned " + caughtFish.getPoints() + " points. "
                     + "Total points: " + getScore() + " Total fish caught: " + getNumFishCaught()
                     + " Number of fishing attempts: " + getNumFishingAttempts();
