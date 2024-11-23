@@ -32,8 +32,8 @@ public class FishSimulatorRunner {
         while (!simulator.gameOver()){
             String castResults = simulator.castLine();
             System.out.println(castResults);
-            if (!castResults.contains("No fish")){  //If a fish is found, ask user to enter command
-                System.out.println("Enter '" + simulator.getFishingCommand() + "' to fish");
+            if (!castResults.contains("No fish")){  //If a fish is found, ask user to enter trigger
+                System.out.println("Enter '" + simulator.getFishingCues() + "' to fish");
                 String userInput = s.next();
                 String catchResults = simulator.catchFish(userInput);
                 System.out.println(catchResults);  //Print whether the fish was caught
@@ -49,4 +49,3 @@ public class FishSimulatorRunner {
             System.out.println("You lost. Try again next time.");
         }
     }
-}
