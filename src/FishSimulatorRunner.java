@@ -13,7 +13,7 @@ public class FishSimulatorRunner {
         Fish fish4 = new Fish("carp",8.5,25,3);
         Fish fish5 = new Fish("tuna",25.5,60,8);
         //Create new instance of FishSimulator
-        FishSimulator simulator = new FishSimulator(Arrays.asList(fish1, fish2, fish3, fish4, fish5), 40000);
+        FishSimulator simulator = new FishSimulator(Arrays.asList(fish1, fish2, fish3, fish4, fish5), 5000);
 
         //Introduce user to program and how to begin
         System.out.println("Welcome to fishing simulator.");
