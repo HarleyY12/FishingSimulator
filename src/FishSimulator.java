@@ -14,8 +14,9 @@ public class FishSimulator {
     private long passedTime;  //Time passed during current attempt
     private boolean fishFound = false;  //Displays whether a fish has been found
     private String fishingCues;  //Random string a user has to enter to catch fish
-    private final String[] cues = {"apple","orange","coding","fish",
-            "fun","school","yes","no"};  //List of possible strings a user enters to catch fish
+    private final String[] cues = {"hook","catch","ocean","fish","aquatic",
+    "expedition","water","river","coding","apple","cactus",
+    "blizzard"};  //List of possible strings a user enters to catch fish
 
     //Constructor to initialize the simulator with a list of fish and a time limit
     public FishSimulator(List<Fish> fishList, long timeInMilliseconds) {
@@ -62,7 +63,8 @@ public class FishSimulator {
     public String catchFish(String userInput) {
         passedTime = System.currentTimeMillis() - startTime;
         if (passedTime > timeLimit){
-            return "You missed the fish.Time is up.";
+            score = score - 2;
+            return "You missed the fish.Time is up.Your score is now " + getScore();
         }
         if (!fishFound) {
             return "No fish found.";
@@ -72,12 +74,12 @@ public class FishSimulator {
             numFishCaught = numFishCaught + 1;
             score = score + caughtFish.getPoints();
             return "You caught a " + caughtFish.getName() + " weighing " + caughtFish.getWeight() + " lbs, measuring "
-                    + caughtFish.getLength() + " inches. You earned " + caughtFish.getPoints() + " points. "
+                    + caughtFish.getLength() + " inches, worth " + caughtFish.getPoints() + " points. "
                     + "Total points: " + getScore() + " Total fish caught: " + getNumFishCaught()
                     + " Number of fishing attempts: " + getNumFishingAttempts();
         } else{
             score = score - 2;
-            return "You have missed the fish. Try again next time.Your score is now " + getScore();
+            return "You have missed the fish. Try again next time.Your score is now " + getScore() + ".";
         }
     }
 
