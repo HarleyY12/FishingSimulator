@@ -1,4 +1,3 @@
-
 //Fish Class represents a fish with different properties
 public class Fish {
     private final String name;   //Name of fish
