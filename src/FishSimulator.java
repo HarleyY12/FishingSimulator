@@ -13,8 +13,8 @@ public class FishSimulator {
     private boolean fishFound = false;  //Displays whether a fish has been found
     private String fishingCues;  //Random string a user has to enter to catch fish
     private final String[] cues = {"hook","catch","ocean","fish","aquatic",
-    "expedition","water","river","coding","apple","cactus",
-    "blizzard"};  //List of possible strings a user enters to catch fish
+            "expedition","water","river","coding","apple","cactus",
+            "blizzard"};  //List of possible strings a user enters to catch fish
 
     //Constructor to initialize the simulator with a list of fish and a time limit
     public FishSimulator(List<Fish> fishList, long timeInMilliseconds) {
@@ -35,8 +35,7 @@ public class FishSimulator {
     public String getFishingCues(){
         return fishingCues;
     }
-
-
+    
     // Starts the fishing session and informs the player of the time limit to catch fish
     public String startFishing() {
         return "You have " + (timeLimit / 1000) + " seconds to fish each fish!";
@@ -49,7 +48,7 @@ public class FishSimulator {
             startTime = System.currentTimeMillis();
             numFishingAttempts = numFishingAttempts + 1;
             fishingCues = cues[new Random().nextInt(cues.length)];
-            return "A fish has been found! Enter '" + fishingCues + "' to fish it.";
+            return "A fish has been found!";
         } else {
             fishFound = false;
             numFishingAttempts = numFishingAttempts + 1;
